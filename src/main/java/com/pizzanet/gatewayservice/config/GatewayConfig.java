@@ -35,6 +35,17 @@ public class GatewayConfig {
     }
 
     /**
+     * Routing dla delivery-service
+     * Przekierowuje /api/deliveries/** -> delivery-service:8083/deliveries/**
+     */
+    @Bean
+    public RouterFunction<ServerResponse> deliveryServiceRoute() {
+        return route("delivery-service")
+                .route(path("/api/deliveries/**"), http("http://delivery-service:8083"))
+                .build();
+    }
+
+    /**
      * Routing dla order-service
      * Przekierowuje /api/orders/** -> order-service:8082/api/orders/**
      */
