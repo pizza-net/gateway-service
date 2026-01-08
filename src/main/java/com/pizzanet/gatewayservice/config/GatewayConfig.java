@@ -55,15 +55,4 @@ public class GatewayConfig {
                 .route(path("/api/orders/**"), http("http://order-service:8082"))
                 .build();
     }
-
-    /**
-     * Routing dla delivery-service
-     * Przekierowuje /api/deliveries/** -> delivery-service:8083/api/deliveries/**
-     */
-    @Bean
-    public RouterFunction<ServerResponse> deliveryServiceRoute() {
-        return route("delivery-service")
-                .route(path("/api/deliveries/**"), http("http://delivery-service:8083"))
-                .build();
-    }
 }
