@@ -33,4 +33,26 @@ public class GatewayConfig {
                 .route(path("/api/pizza/**"), http("http://menu-service:8081"))
                 .build();
     }
+
+    /**
+     * Routing dla order-service
+     * Przekierowuje /api/orders/** -> order-service:8082/api/orders/**
+     */
+    @Bean
+    public RouterFunction<ServerResponse> orderServiceRoute() {
+        return route("order-service")
+                .route(path("/api/orders/**"), http("http://order-service:8082"))
+                .build();
+    }
+
+    /**
+     * Routing dla delivery-service
+     * Przekierowuje /api/deliveries/** -> delivery-service:8083/api/deliveries/**
+     */
+    @Bean
+    public RouterFunction<ServerResponse> deliveryServiceRoute() {
+        return route("delivery-service")
+                .route(path("/api/deliveries/**"), http("http://delivery-service:8083"))
+                .build();
+    }
 }
