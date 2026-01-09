@@ -55,4 +55,15 @@ public class GatewayConfig {
                 .route(path("/api/orders/**"), http("http://order-service:8082"))
                 .build();
     }
+
+    /**
+     * Routing dla payment-service
+     * Przekierowuje /api/payments/** -> payment-service:8084/api/payments/**
+     */
+    @Bean
+    public RouterFunction<ServerResponse> paymentServiceRoute() {
+        return route("payment-service")
+                .route(path("/api/payments/**"), http("http://payment-service:8084"))
+                .build();
+    }
 }
