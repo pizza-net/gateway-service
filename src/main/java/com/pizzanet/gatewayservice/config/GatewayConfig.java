@@ -66,4 +66,18 @@ public class GatewayConfig {
                 .route(path("/api/payments/**"), http("http://payment-service:8084"))
                 .build();
     }
+    
+    /**
+     * Alternative direct routing for payment-service (explicit path)
+     */
+    @Bean
+    public RouterFunction<ServerResponse> paymentServiceRouteAlt() {
+        return route("payment-service-alt")
+                .route(path("/api/payments/create-checkout-session"), http("http://payment-service:8084"))
+                .route(path("/api/payments/verify-session"), http("http://payment-service:8084"))
+                .route(path("/api/payments/success"), http("http://payment-service:8084"))
+                .route(path("/api/payments/cancel"), http("http://payment-service:8084"))
+                .route(path("/api/payments/order/**"), http("http://payment-service:8084"))
+                .build();
+    }
 }
